@@ -1,4 +1,3 @@
-
 import os
 import requests
 import pprint
@@ -9,7 +8,7 @@ load_dotenv()
 API_KEY = os.getenv("API_KEY")
 BASE_URL = "http://strainapi.evanbusse.com/"
 ENDPOINT = "/strains/search/all"
-URL = BASE_URL + API_KEY + ENDPOINT 
+URL = BASE_URL + API_KEY + ENDPOINT
 
 pp = pprint.PrettyPrinter(indent=4)
 

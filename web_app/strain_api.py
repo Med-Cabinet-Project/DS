@@ -1,15 +1,14 @@
-import requests, os
+import requests, os, pprint
 from dotenv import load_dotenv
-import pprint
 
 load_dotenv()
 
 # Grab keys and tokens from .env
 API_1_KEY = os.getenv('API_1_KEY', default='Oops')
-BASE_1_URL = os.getenv('BASE_1_URL', default='Oops')
 
 # URLs
 EFFECTS_ENDPOINT = '/searchdata/effects'
+BASE_1_URL = 'http://strainapi.evanbusse.com/'
 
 pp = pprint.PrettyPrinter(indent=4)
 

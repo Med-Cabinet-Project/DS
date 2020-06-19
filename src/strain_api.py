@@ -1,28 +1,19 @@
-import requests
+import requests, os
+from dotenv import load_dotenv
+import pprint
+
+load_dotenv()
+
+# Grab keys and tokens from .env
+API_1_KEY = os.getenv('API_1_KEY', default='Oops')
+BASE_1_URL = os.getenv('BASE_1_URL', default='Oops')
 
 # URLs
-base_url = requests.get('strainapi.evanbusse.com/API_KEY')
-effects_url = requests.get('strainapi.evanbusse.com/API_KEY/searchdata/effects')
-flavors_url = requests.get('strainapi.evanbusse.com/API_KEY/searchdata/flavors')
+EFFECTS_ENDPOINT = '/searchdata/effects'
 
-# Get all strains (Use sparingly -- requires a lot of computing power)
-strains_url = requests.get('strainapi.evanbusse.com/API_KEY/strains/search/all')
+pp = pprint.PrettyPrinter(indent=4)
 
-# # Search for strains by name
-# requests.get('strainapi.evanbusse.com/API_KEY/strains/search/name/NAME')
-#
-# # Search for strains by race (Available races: Sativa, Indica, and Hybrid)
-# strainapi.evanbusse.com/API_KEY/strains/search/race/RACE
-# # Search for strains by effect
-# strainapi.evanbusse.com/API_KEY/strains/search/effect/EFFECT
-# # Search for strains by flavor
-# strainapi.evanbusse.com/API_KEY/strains/search/flavor/FLAVOR
-#
-# response = requests.get("strainapi.evanbusse.com/API_KEY/searchdata/effects
-# ")
-# print(response.status_code)
-
-URL = BASE_URL + API_KEY + ENDPOINT
+URL = BASE_1_URL + API_1_KEY + EFFECTS_ENDPOINT
 r = requests.get(url=URL)
 data = r.json()
-print(data)
+pp.pprint(data)

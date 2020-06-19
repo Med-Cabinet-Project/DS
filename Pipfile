@@ -13,6 +13,7 @@ psycopg2-binary = "*"
 Flask = "*"
 Flask-SQLAlchemy = "*"
 Flask-Migrate = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"

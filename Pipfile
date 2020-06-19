@@ -10,13 +10,10 @@ requests = "*"
 pandas = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
+python-dotenv = "*"
 Flask = "*"
 Flask-SQLAlchemy = "*"
 Flask-Migrate = "*"
-python-dotenv = "*"
-<<<<<<< HEAD
 
 [requires]
 python_version = "3.7"
-=======
->>>>>>> 620c20152f755a46cb05fef08f10ea612bcbeb2f

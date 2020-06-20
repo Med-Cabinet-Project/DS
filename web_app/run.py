@@ -38,14 +38,17 @@ print(data.items())
 
 print("---STRAND----")
 
-strands_dict = {'name': [], 'medical':[], 'positive_effects':[], ''}
+strands_dict = {'name': [], 'id':[], 'race':[], 'medical':[], 'positive_effects':[], 'negative_effects':[], 'flavors':[]}
 for key in data.keys():
-    strands.append(key)
+    strands_dict['name'].append(key)
+    strands_dict['id'].append(key['id'])
+    strands_dict['race'].append(key['race'])
+    strands_dict['medical'].append(key['effects']['medical'])
+    strands_dict['positive'].append(key['effects']['positive'])
+    strands_dict['negative'].append(key['effects']['negative'])
+    strands_dict['flavors'].append(key['flavors'])
 
-print(strands)
 
 
+print(strands_dict)
 
-print("---RES----")
-effects = data['effects']
-print(effects)

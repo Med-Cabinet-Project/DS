@@ -2,8 +2,8 @@ import os
 from flask import Flask
 from dotenv import load_dotenv
 
-# from web_app.models import db, migrate
-# from web_app.routes.strain_routes import twitter_routes
+from web_app.models import db, migrate
+from web_app.routes.strain_routes import strain_routes
 
 load_dotenv()
 

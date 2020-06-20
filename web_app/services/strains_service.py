@@ -24,8 +24,8 @@ with request.urlopen(URL) as response:
 pprint(type(data))
 print(len(data.keys())) # 1970 different strains will not be possible to call each one separately
 
+if __name__ == "__main__":
 print("---STRAND----")
-
 strands_dict = {'name': [], 'id': [], 'race':[], 'medical':[], 'positive':[], 'negative':[], 'flavors':[]}
 for key, value in data.items():
     strands_dict['name'].append(key)

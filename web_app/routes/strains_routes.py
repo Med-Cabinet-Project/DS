@@ -2,9 +2,9 @@
 from flask import Blueprint, render_template, flash, redirect
 import requests
 from web_app.models import db, Strain, get_records, add_records, parse_records
-from web_app.services.strains_service import api
+from web_app.services.strains_service import API
 
-aq_routes = Blueprint("aq_routes", __name__)
+strain_routes = Blueprint("strain_routes", __name__)
 
 @aq_routes.route('/home', methods=["GET", "POST"])
 def root():

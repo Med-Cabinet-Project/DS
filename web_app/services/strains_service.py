@@ -11,7 +11,7 @@ load_dotenv()
 API_KEY = os.getenv("API_KEY")
 BASE_URL = "http://strainapi.evanbusse.com/"
 ENDPOINT = "/strains/search/all"
-URL = BASE_URL + API_KEY + ENDPOINT 
+API = BASE_URL + API_KEY + ENDPOINT 
 
 #Exploring data and seeing how to extract specific values
 with request.urlopen(URL) as response:
@@ -25,17 +25,17 @@ pprint(type(data))
 print(len(data.keys())) # 1970 different strains will not be possible to call each one separately
 
 if __name__ == "__main__":
-print("---STRAND----")
-strands_dict = {'name': [], 'id': [], 'race':[], 'medical':[], 'positive':[], 'negative':[], 'flavors':[]}
-for key, value in data.items():
-    strands_dict['name'].append(key)
-    strands_dict['id'].append(value['id'])
-    strands_dict['race'].append(value['race'])
-    strands_dict['medical'].append(value['effects']['medical'])
-    strands_dict['positive'].append(value['effects']['positive'])
-    strands_dict['negative'].append(value['effects']['negative'])
-    strands_dict['flavors'].append(value['flavors'])
+    print("---STRAND----")
+    strands_dict = {'name': [], 'id': [], 'race':[], 'medical':[], 'positive':[], 'negative':[], 'flavors':[]}
+    for key, value in data.items():
+        strands_dict['name'].append(key)
+        strands_dict['id'].append(value['id'])
+        strands_dict['race'].append(value['race'])
+        strands_dict['medical'].append(value['effects']['medical'])
+        strands_dict['positive'].append(value['effects']['positive'])
+        strands_dict['negative'].append(value['effects']['negative'])
+        strands_dict['flavors'].append(value['flavors'])
 
-pprint(strands_dict)
+    pprint(strands_dict)
 
 

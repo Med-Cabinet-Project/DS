@@ -1,18 +1,19 @@
 
 from flask import Blueprint, render_template, flash, redirect
 import requests
-from web_app.models import db, Strain, get_records, add_records, parse_records
-from web_app.services.strains_service import API
+from web_app.models import DB, Strain, parse_records
+from web_app.services.strains_service import API 
+from web_app.services.strains_service import data
 
 strain_routes = Blueprint("strain_routes", __name__)
 
-@aq_routes.route('/home', methods=["GET", "POST"])
-def root():
-    """Base view."""
-    #`Record` objects that have `value` greater or equal to 10.
+@strain_routes.route('/', methods=["GET", "POST"])
+def strains():
+    """Add strains to db_strain."""
+
     add_records(get_records())
 
-    records = Record.query.filter(Record.value >= 10).all()
+    records = Record.query.filter().all()
     print(records)
 
     return render_template("form.html", records=records, message="Home Page")
@@ -31,3 +32,4 @@ def refresh():
 
     flash(f"'Data refreshed!", "success") # "danger" "warning"
     return render_template("refresh.html", records=records)
+

@@ -1,0 +1,29 @@
+<!-- aq_dashboard/templates/refresh.html -->
+
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "refresh" %}
+
+{% block content %}
+
+    <h2>OPEN AQ</h2>
+
+    <p>{{ message }}</p>
+
+    <table style="width:100%">
+      <thead>
+        <tr>
+          <th>Datetime</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for record in records %}
+        <tr>
+          <td>{{ record.datetime }}</td>
+          <td>{{ record.value }}</td>
+        </tr>
+        < {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}

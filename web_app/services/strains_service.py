@@ -1,3 +1,4 @@
+#web_app/services/strain_services.py
 
 import os
 import urllib.request as request
@@ -37,5 +38,4 @@ for key, value in data.items():
 
 pprint(strands_dict)
 
-#Creating a pandas dataframe with the dictionary
 

@@ -27,28 +27,29 @@ with request.urlopen(URL) as response:
     else:
         print('An error occurred while attempting to retrieve data from the API.')
 
-
 # pprint(type(data))
 print(len(data.keys())) # 1970 different strains will not be possible to call each one separately
-# pprint(data.keys())   
 
-print("---DATA ITEMS----")
-print(data.items())
-
+# print("---DATA ITEMS----")
+for (k, v) in data.items():
+    print("Key: " + k)
+    print("Value: " + str(v))
 
 print("---STRAND----")
 
-strands_dict = {'name': [], 'id':[], 'race':[], 'medical':[], 'positive_effects':[], 'negative_effects':[], 'flavors':[]}
-for key in data.keys():
+strands_dict = {'name': [], 'id': [], 'race':[], 'medical':[], 'positive':[], 'negative':[], 'flavors':[]}
+for key, value in data.items():
     strands_dict['name'].append(key)
-    strands_dict['id'].append(key['id'])
-    strands_dict['race'].append(key['race'])
-    strands_dict['medical'].append(key['effects']['medical'])
-    strands_dict['positive'].append(key['effects']['positive'])
-    strands_dict['negative'].append(key['effects']['negative'])
-    strands_dict['flavors'].append(key['flavors'])
+    strands_dict['id'].append(value['id'])
+    strands_dict['race'].append(value['race'])
+    strands_dict['medical'].append(value['effects']['medical'])
+    strands_dict['positive'].append(value['effects']['positive'])
+    strands_dict['negative'].append(value['effects']['negative'])
+    strands_dict['flavors'].append(value['flavors'])
 
 
 
-print(strands_dict)
+pprint(strands_dict)
+
+#Creating a pandas dataframe with the dictionary
 

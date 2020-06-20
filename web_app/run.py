@@ -29,5 +29,5 @@ with request.urlopen(URL) as response:
 
 
 pprint(type(data))
-print(len(data.keys()))
+print(len(data.keys())) # 1970 different strains will not be possible to call each one separately
 # pprint(data.keys())   

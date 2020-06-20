@@ -17,7 +17,7 @@ URL = BASE_URL + API_KEY + ENDPOINT
 #Get all the strains and information about effects
 r = requests.get(url=URL)
 data = r.json()
-pprint(data)
+# pprint(data)
 
 #Exploring data and seeing how to extract specific values
 with request.urlopen(URL) as response:
@@ -28,6 +28,24 @@ with request.urlopen(URL) as response:
         print('An error occurred while attempting to retrieve data from the API.')
 
 
-pprint(type(data))
+# pprint(type(data))
 print(len(data.keys())) # 1970 different strains will not be possible to call each one separately
 # pprint(data.keys())   
+
+print("---DATA ITEMS----")
+print(data.items())
+
+
+print("---STRAND----")
+
+strands_dict = {'name': [], 'medical':[], 'positive_effects':[], ''}
+for key in data.keys():
+    strands.append(key)
+
+print(strands)
+
+
+
+print("---RES----")
+effects = data['effects']
+print(effects)

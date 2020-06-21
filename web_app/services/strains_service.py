@@ -19,11 +19,11 @@ API = BASE_URL + API_KEY + ENDPOINT
 if __name__ == "__main__":
     #Exploring data and seeing how to extract specific values
     with request.urlopen(API) as response:
-    if response.getcode() == 200:
+        if response.getcode() == 200:
             source = response.read()
             data = json.loads(source)
-    else:
-        print('An error occurred while attempting to retrieve data from the API.')
+         else:
+            print('An error occurred while attempting to retrieve data from the API.')
 
     pprint(type(data))
     print(len(data.keys())) # 1970 different strains will not be possible to call each one separately

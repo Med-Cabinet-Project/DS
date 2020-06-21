@@ -40,14 +40,14 @@ def get_records(api=API):
     for obs in observations:
         records.append(Strain(name=obs[0], race=obs[1]))
      
-    print(f"RECORDS : {records}")                
+    # print(f"RECORDS : {records}")                
     return records
 
 
 def add_records(records, database=DB):
     
   for r in records: 
-    print(f"R : {r}")                
+    # print(f"R : {r}")                
 
     DB.session.add(r)
 

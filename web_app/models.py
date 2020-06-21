@@ -4,16 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 import os
+from web_app.services.strains_service import API  
 import urllib.request as request
-from pprint import pprint
-from dotenv import load_dotenv
-
-load_dotenv()
-
-API_KEY = os.getenv("API_KEY")
-BASE_URL = "http://strainapi.evanbusse.com/"
-ENDPOINT = "/strains/search/all"
-API = BASE_URL + API_KEY + ENDPOINT 
 
 DB = SQLAlchemy()
 

@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, flash, redirect
 import requests
 from web_app.models import DB, Strain, parse_records
 from web_app.services.strains_service import API 
-from web_app.services.strains_service import data
+
 
 strain_routes = Blueprint("strain_routes", __name__)
 

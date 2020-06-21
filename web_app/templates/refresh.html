@@ -12,15 +12,23 @@
     <table style="width:100%">
       <thead>
         <tr>
-          <th>Datetime</th>
-          <th>Value</th>
+          <th>STRAIN</th>
+          <th>RACE</th>
+          <th>MEDICAL</th>
+          <th>POSITIVE</th>
+          <th>NEGATIVE</th>
+          <th>FLAVORS</th>
         </tr>
       </thead>
       <tbody>
         {% for record in records %}
         <tr>
-          <td>{{ record.datetime }}</td>
-          <td>{{ record.value }}</td>
+          <td>{{ record.name}}</td>
+          <td>{{ record.race }}</td>
+          <td>{{ record.medical }}</td>
+          <td>{{ record.positive }}</td>
+          <td>{{ record.negative }}</td>
+          <td>{{ record.flavors }}</td>
         </tr>
         < {% endfor %}
       </tbody>

@@ -4,8 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 import os
-from web_app.services.strains_service import API  
 import urllib.request as request
+import json
+from web_app.services.strains_service import API  
 
 DB = SQLAlchemy()
 

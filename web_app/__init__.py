@@ -17,7 +17,7 @@ def create_app():
     APP.config["SECRET_KEY"] = SECRET_KEY
 
     APP.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
-    DB.init_app(app)
+    DB.init_app(APP)
     migrate.init_app(APP, DB)
 
     APP.register_blueprint(strain_routes)

@@ -22,7 +22,7 @@ class Strain(DB.Model):
     flavors = DB.Column(DB.String(128), nullable = True)
 
     def __repr__(self):
-        return f"Strain {self.id} {self.name} {self.race} {self.medical} {self.positive} {self.negative} {self.flavors}"
+        return f"<Strain id ={self.id} name={self.name} race={self.race}>" #{self.medical} {self.positive} {self.negative} {self.flavors} >
 
 def get_records(api=API):
     with request.urlopen(API) as response:
@@ -35,10 +35,10 @@ def get_records(api=API):
     records = []
 
     #Have to do in two steps because the effects - medical, positive, and negative are nested
-    observations = [(k, v['race'], v[effects][0][medical],v[effects][0][positve], v[effects][0][negative],v[0][flavors],)
+    observations = [(k, v['race'])
                     for k,v in data.items()]
     for obs in observations:
-        records.append(Strain(name=obs[0], race=obs[1]), medical=obs[2], positve=obs[3], negative=obs[4],flavors=obs[5] )
+        records.append(Strain(name=obs[0], race=obs[1]))
      
     print(f"RECORDS : {records}")                
     return records

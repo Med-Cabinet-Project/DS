@@ -37,7 +37,7 @@ def get_records(api=API):
     observations = [(k, v['race'], v['effects']['medical'], v['effects']['positive'], v['effects']['negative'], v['flavors'])
                     for k,v in data.items()]
     for obs in observations:
-        records.append(Record(name=obs[0], race=obs[1], medical=obs[2], positive=obs[3], negative=obs[4], flavors=obs[5]))
+        records.append(Strain(name=obs[0], race=obs[1], medical=obs[2], positive=obs[3], negative=obs[4], flavors=obs[5]))
                     
     return records
 

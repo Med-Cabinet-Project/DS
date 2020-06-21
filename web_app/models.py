@@ -22,7 +22,7 @@ class Strain(DB.Model):
     flavors = DB.Column(DB.String(128), nullable = True)
 
     def __repr__(self):
-        return f"<Strain id ={self.id} name={self.name} race={self.race}>" #{self.medical} {self.positive} {self.negative} {self.flavors} >
+        return f"Strain id ={self.id} name={self.name} race={self.race}" #{self.medical} {self.positive} {self.negative} {self.flavors} >
 
 def get_records(api=API):
     with request.urlopen(API) as response:

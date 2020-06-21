@@ -16,13 +16,13 @@ class Strain(DB.Model):
     id = DB.Column(DB.Integer, primary_key = True)
     name = DB.Column(DB.String(128))
     race = DB.Column(DB.String(128), nullable = False)
-    medical = DB.Column(DB.String(500), nullable = True)
-    positive = DB.Column(DB.String(500), nullable = False)
-    negative = DB.Column(DB.String(500), nullable = True)
-    flavors = DB.Column(DB.String(128), nullable = False)
+    # medical = DB.Column(DB.String(500), nullable = True)
+    # positive = DB.Column(DB.String(500), nullable = False)
+    # negative = DB.Column(DB.String(500), nullable = True)
+    # flavors = DB.Column(DB.String(128), nullable = False)
 
     def __repr__(self):
-        return f"<Strain {self.id} {self.name} {self.race} {self.medical} {self.positive} {self.negative} {self.flavors} >"
+        return f"<Strain {self.id} {self.name} {self.race}>" #{self.medical} {self.positive} {self.negative} {self.flavors} >
 
 def get_records(api=API):
     with request.urlopen(API) as response:
@@ -34,11 +34,15 @@ def get_records(api=API):
 
     records = []
 
-    observations = [(k, v['race'], v['effects']['medical'], v['effects']['positive'], v['effects']['negative'], v['flavors'])
+    #Have to do in two steps because the effects - medical, positive, and negative are nested
+    observations = [(k, v['id'], v['race'],)
                     for k,v in data.items()]
     for obs in observations:
-        records.append(Strain(name=obs[0], race=obs[1], medical=obs[2], positive=obs[3], negative=obs[4], flavors=obs[5]))
-                    
+        records.append(Strain(id=obs[1], name=obs[0], race=obs[2]))
+    
+
+    
+    print(records)                
     return records
 
 

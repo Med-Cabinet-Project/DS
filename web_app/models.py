@@ -13,13 +13,13 @@ DB = SQLAlchemy()
 migrate = Migrate()
 
 class Strain(DB.Model):
-    id = DB.Column(DB.Integer, primary_key = True)
-    name = DB.Column(DB.String(128))
-    race = DB.Column(DB.String(128), nullable = False)
-    # medical = DB.Column(DB.String(500), nullable = True)
-    # positive = DB.Column(DB.String(500), nullable = False)
-    # negative = DB.Column(DB.String(500), nullable = True)
-    # flavors = DB.Column(DB.String(128), nullable = False)
+    id = DB.Column(DB.Integer, primary_key = True, autoincrement=True)
+    name = DB.Column(DB.String(128), nullable = True)
+    race = DB.Column(DB.String(128), nullable = True)
+    medical = DB.Column(DB.String(500), nullable = True)
+    positive = DB.Column(DB.String(500), nullable = True)
+    negative = DB.Column(DB.String(500), nullable = True)
+    flavors = DB.Column(DB.String(128), nullable = True)
 
     def __repr__(self):
         return f"<Strain {self.id} {self.name} {self.race}>" #{self.medical} {self.positive} {self.negative} {self.flavors} >
@@ -35,20 +35,20 @@ def get_records(api=API):
     records = []
 
     #Have to do in two steps because the effects - medical, positive, and negative are nested
-    observations = [(k, v['id'], v['race'],)
+    observations = [(k, v['race'],)
                     for k,v in data.items()]
     for obs in observations:
-        records.append(Strain(id=obs[1], name=obs[0], race=obs[2]))
-    
-
-    
-    print(records)                
+        records.append(Strain(name=obs[0], race=obs[1]))
+     
+    print(f"RECORDS : {records}")                
     return records
 
 
 def add_records(records, database=DB):
     
   for r in records: 
+    print(f"R : {r}")                
+
     DB.session.add(r)
 
   DB.session.commit()

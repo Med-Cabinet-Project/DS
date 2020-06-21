@@ -22,7 +22,7 @@ if __name__ == "__main__":
         if response.getcode() == 200:
             source = response.read()
             data = json.loads(source)
-         else:
+        else:
             print('An error occurred while attempting to retrieve data from the API.')
 
     pprint(type(data))

@@ -14,7 +14,7 @@ def roots():
 
     add_records(get_records())
 
-    records = Record.query.all()
+    records = Strain.query.all()
     print(records)
 
     return render_template("form.html", records=records, message="Home Page")
@@ -27,7 +27,7 @@ def refresh():
 
     # add new records
     add_records(get_records())
-    records = Record.query.all()
+    records = Strain.query.all()
     
     print(records)
 

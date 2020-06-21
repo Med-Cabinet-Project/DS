@@ -13,10 +13,8 @@ def roots():
     """Add strains to db_strain."""
 
     add_records(get_records())
-
     records = Strain.query.all()
-    print(records)
-
+    # print(records)
     return render_template("form.html", records=records, message="Home Page")
 
 @strain_routes.route('/refresh')
@@ -29,8 +27,7 @@ def refresh():
     add_records(get_records())
     records = Strain.query.all()
     
-    print(records)
-
+    # print(records)
     flash(f"'Data refreshed!", "success") # "danger" "warning"
     return render_template("refresh.html", records=records)
 

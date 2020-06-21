@@ -1,7 +1,8 @@
+#web_app/routes/strain_routes.py
 
 from flask import Blueprint, render_template, flash, redirect
 import requests
-from web_app.models import DB, Strain, parse_records
+from web_app.models import DB, Strain, get_records, add_records
 from web_app.services.strains_service import API 
 
 
@@ -13,7 +14,7 @@ def strains():
 
     add_records(get_records())
 
-    records = Record.query.filter().all()
+    records = Record.query.all()
     print(records)
 
     return render_template("form.html", records=records, message="Home Page")
@@ -26,7 +27,7 @@ def refresh():
 
     # add new records
     add_records(get_records())
-    records = Record.query.filter(Record.value >=10).all()
+    records = Record.query.all()
     
     print(records)
 

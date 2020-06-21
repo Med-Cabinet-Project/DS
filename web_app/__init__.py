@@ -19,7 +19,7 @@ def create_app():
     DB.init_app(app)
     migrate.init_app(APP, DB)
 
-    app.register_blueprint(strain_routes)
+    APP.register_blueprint(strain_routes)
 
     return APP
 

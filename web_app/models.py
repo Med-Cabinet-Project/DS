@@ -24,13 +24,12 @@ class Strain(DB.Model):
         return f"<Strain {self.id} {self.name} {self.race} {self.medical} {self.positive} {self.negative} {self.flavors} >"
 
 def get_records(api=API):
-    # Extracting information as json 
     with request.urlopen(API) as response:
-    if response.getcode() == 200:
+        if response.getcode() == 200:
             source = response.read()
             data = json.loads(source)
-    else:
-        print('An error occurred while attempting to retrieve data from the API.')
+        else:
+            print('An error occurred while attempting to retrieve data from the API.')
 
     records = []
 
@@ -43,6 +42,7 @@ def get_records(api=API):
 
 
 def add_records(records, database=DB):
+    
   for r in records: 
     DB.session.add(r)
 

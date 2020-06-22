@@ -29,6 +29,6 @@ def refresh():
     strain = Strain.query.all()
     records = parse_records(strain)
     
-    return render_template("refresh.html", records=records, message="Home Page")
+    return render_template("refresh.html", records=records, message="Refreshed Page!")
 
 

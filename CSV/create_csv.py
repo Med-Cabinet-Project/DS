@@ -28,9 +28,8 @@ for key, value in data.items():
   strains_dict['negative'].append(value['effects']['negative'])
   strains_dict['flavors'].append(value['flavors'])
 
-#N2. ext converting dictionary to dataframe
-strains = pd.DataFrame.from_dict(strains_dict, orient='index')
-strains = strains.transpose()
+#2. ext converting dictionary to dataframe
+strains = pd.DataFrame.from_dict(strains_dict)
 
 #Removing []
 strains['medical'] = strains['medical'].str.join(',')

@@ -42,7 +42,11 @@ def create_table(api=API):
     #Creating a dictionary for the json object
     strains_dict = {'name': [],'race':[], 'medical':[], 'positive':[], 'negative':[], 'flavors':[]}
 
+
     for key, value in data.items():
+        strain = Strain(name=key, race=value["race"], medical=','.join(value["effects"]["medical"]), positive=','.join(value["effects"]["positive"]), negative=','.join(value["effects"]["negative"]), flavors=','.join(value["flavors"]))
+        DB.session.add(strain)
+
         strains_dict['name'].append(key)
         strains_dict['race'].append(value['race'])
         strains_dict['medical'].append(value['effects']['medical'])
@@ -50,34 +54,9 @@ def create_table(api=API):
         strains_dict['negative'].append(value['effects']['negative'])
         strains_dict['flavors'].append(value['flavors'])
 
-    #Creating a table from the strains dictionary
-    strains_df = pd.DataFrame.from_dict(strains_dict, orient='index')
-    strains_df = strains_df.transpose()
-
-    #removing [] from the last four columns 
-    # strains_df[['medical', 'positive', 'negative', 'flavors']] = strains_df[['medical', 'positive', 'negative', 'flavors']].str.join(',')
-    strains_df['medical'] = strains_df['medical'].str.join(',')
-    strains_df['positive'] = strains_df['positive'].str.join(',')
-    strains_df['negative'] = strains_df['negative'].str.join(',')
-    strains_df[ 'flavors'] = strains_df[ 'flavors'].str.join(',')
-
-    Strain.name = strains_df.name
-    Strain.race = strains_df.race
-    Strain.medical = strains_df.medical
-    Strain.positive = strains_df.positive
-    Strain.negative = strains_df.negative
-    Strain.flavors = strains_df.flavors
-
-    return strains_df
-
-def add_table(strains_df, database=DB):
-
-    engine = create_engine(DATABASE_URL)
-    strains = strains_df.to_sql('strains', engine, if_exists='replace')
-
+   
     DB.session.commit()
 
-    return strains
 
 def parse_records(database_records):
     """
@@ -100,22 +79,4 @@ def parse_records(database_records):
     return parsed_records
 
 
-# def get_records(city="Los Angeles", parameter="pm25"):
-#     status, body = api.measurements(city=city, parameter=parameter)
-
-#     records = []
-
-#     observations = [(res['date']['utc'], res['value'])
-#                     for res in body['results']]
-#     for obs in observations:
-#         records.append(Record(datetime=obs[0], value=obs[1]))
-                    
-#     return records
-
-
-# def add_records(records, database=DB):
-#   for r in records: 
-#     # print(r) checking if records are being created
-#     DB.session.add(r)
-#   DB.session.commit()
 

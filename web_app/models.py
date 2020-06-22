@@ -75,6 +75,8 @@ def add_table(strains_df, database=DB):
     engine = create_engine(DATABASE_URL)
     strains = strains_df.to_sql('strains', engine, if_exists='replace')
 
+    DB.session.commit()
+
     return strains
 
 def parse_records(database_records):
@@ -96,3 +98,24 @@ def parse_records(database_records):
         del parsed_record["_sa_instance_state"]
         parsed_records.append(parsed_record)
     return parsed_records
+
+
+# def get_records(city="Los Angeles", parameter="pm25"):
+#     status, body = api.measurements(city=city, parameter=parameter)
+
+#     records = []
+
+#     observations = [(res['date']['utc'], res['value'])
+#                     for res in body['results']]
+#     for obs in observations:
+#         records.append(Record(datetime=obs[0], value=obs[1]))
+                    
+#     return records
+
+
+# def add_records(records, database=DB):
+#   for r in records: 
+#     # print(r) checking if records are being created
+#     DB.session.add(r)
+#   DB.session.commit()
+

@@ -16,10 +16,9 @@ def roots():
     strain = Strain.query.all()
     records = parse_records(strain)
     
-    
     return render_template("form.html", records=records, message="Home Page")
 
-@strain_routes.route('/refresh', methods=["GET", "POST"])
+@strain_routes.route('/refresh')
 def refresh():
     """Add strains to db_strain."""
 

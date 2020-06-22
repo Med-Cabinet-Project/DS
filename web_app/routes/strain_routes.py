@@ -2,7 +2,7 @@
 
 from flask import Blueprint, render_template, flash, redirect
 import requests
-from web_app.models import DB, Strain, create_table, parse_records 
+from web_app.models import DB, Strain, extract_data, create_table, parse_records 
 from web_app.services.strains_service import API 
 
 
@@ -10,9 +10,9 @@ strain_routes = Blueprint("strain_routes", __name__)
 
 @strain_routes.route('/', methods=["GET", "POST"])
 def roots():
-    """Add strains to db_strain."""
+    """Base view."""
 
-    create_table()
+    create_table(extract_data())
     strain = Strain.query.all()
     records = parse_records(strain)
     
@@ -22,7 +22,10 @@ def roots():
 def refresh():
     """Add strains to db_strain."""
 
-    create_table()
+    DB.drop_all()
+    DB.create_all()
+
+    create_table(extract_data())
     strain = Strain.query.all()
     records = parse_records(strain)
     

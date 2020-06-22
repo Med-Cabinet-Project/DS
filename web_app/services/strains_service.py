@@ -13,9 +13,6 @@ BASE_URL = "http://strainapi.evanbusse.com/"
 ENDPOINT = "/strains/search/all"
 API = BASE_URL + API_KEY + ENDPOINT 
 
-
-
-
 if __name__ == "__main__":
     #Exploring data and seeing how to extract specific values
     with request.urlopen(API) as response:

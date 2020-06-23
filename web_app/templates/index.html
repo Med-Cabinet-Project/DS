@@ -1,0 +1,28 @@
+<!--web_app/templates/index.html-->
+
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "SEARCH PAGE" %}
+
+{% block content %}
+        <h1>SEARCH STRAINS</h1>
+
+        <h4>Show Results For:</h4>
+
+        <form action="" method="POST">
+            <p>
+                Strain:
+                <input type="text" name="name" />
+            </p>
+            <p>
+                Threshold:
+                <input type="number" name="threshold" min=5 max=25 />
+            </p>
+            <p>
+                <input type="submit" />
+            </p>
+                
+        </form>
+    </body>
+
+
+{% endblock %}

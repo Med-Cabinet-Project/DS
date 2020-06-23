@@ -7,6 +7,7 @@ import os
 import urllib.request as request
 import json
 import pandas as pd
+import pickle
 
 from web_app.services.strains_service import API  
 from dotenv import load_dotenv
@@ -16,6 +17,7 @@ load_dotenv()
 
 DB = SQLAlchemy()
 migrate = Migrate()
+
 
 class Strain(DB.Model):
     __tablename__ = "strains"
@@ -115,6 +117,4 @@ def parse_records(database_records):
         parsed_records.append(parsed_record)
         
     return (parsed_records)
-
-
 

@@ -1,6 +1,5 @@
 #web_app/models.py
 
-from flask import jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -27,11 +26,11 @@ class Strain(DB.Model):
     positive = DB.Column(DB.String(500), nullable = True)
     negative = DB.Column(DB.String(500), nullable = True)
     flavors = DB.Column(DB.String(128), nullable = True)
-    ratings = DB.Column(DB.Integer, nullable = True)
+    rating = DB.Column(DB.Integer, nullable = True)
     description = DB.Column(DB.String(500), nullable =True)
 
     def __repr__(self):
-        return f"<Strains id ={self.id} name={self.name} race={self.race} medical={self.medical} positive={self.positive} negative={self.negative} flavors={self.flavors} ratings={self.ratings} description={self.description}>"
+        return f"<Strains id ={self.id} name={self.name} race={self.race} medical={self.medical} positive={self.positive} negative={self.negative} flavors={self.flavors} rating={self.ratings} description={self.description}>"
 
 def extract_data(api=API):
     """
@@ -80,11 +79,10 @@ def create_table(data, database=DB):
     cannabis_dict = small.set_index('rating')['description'].to_dict()
 
     #Creating a dictionary for the json object
-    strains_dict = {'name': [],'race':[], 'medical':[], 'positive':[], 'negative':[], 'flavors':[], 'ratings':[], 'description':[]}
+    strains_dict = {'name': [],'race':[], 'medical':[], 'positive':[], 'negative':[], 'flavors':[], 'ratings':[], 'description':[], 'rating':[], 'description':[]}
 
-
-    for key, value in data.items():
-        strain = Strain(name=key, race=value["race"], medical=','.join(value["effects"]["medical"]), positive=','.join(value["effects"]["positive"]), negative=','.join(value["effects"]["negative"]), flavors=','.join(value["flavors"]))
+    for (key, value), (k, v) in zip(data.items(), cannabis_dict.items()):
+        strain = Strain(name=key, race=value["race"], medical=','.join(value["effects"]["medical"]), positive=','.join(value["effects"]["positive"]), negative=','.join(value["effects"]["negative"]), flavors=','.join(value["flavors"]), rating=k, description=v)
 
         DB.session.add(strain)
 
@@ -94,16 +92,11 @@ def create_table(data, database=DB):
         strains_dict['positive'].append(','.join(value['effects']['positive']))
         strains_dict['negative'].append(','.join(value['effects']['negative']))
         strains_dict['flavors'].append(','.join(value['flavors']))
-        
-        print(strains_dict)
+        strains_dict['rating'].append(k)
+        strains_dict['description'].append(v)
 
-    # for k,v in cannabis_dict.items():
-    #     strain = Strain(ratings=k, description=v)
-
-        # DB.session.add(strain)
-   
     DB.session.commit()
-
+    
 
 def parse_records(database_records):
     """
@@ -121,7 +114,7 @@ def parse_records(database_records):
         del parsed_record["_sa_instance_state"]
         parsed_records.append(parsed_record)
         
-    return jsonify(parsed_records)
+    return (parsed_records)
 
 
 

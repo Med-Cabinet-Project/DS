@@ -5,7 +5,7 @@
 
 {% block content %}
 
-    <h2>SEARCH STRAINS</h2>
+    <h2>WELCOME TO STRAINS DASHBOARD</h2>
 
     <p>{{ message }}</p>
 
@@ -18,6 +18,7 @@
           <th>POSITIVE</th>
           <th>NEGATIVE</th>
           <th>FLAVORS</th>
+          <th>RATING</th>
         </tr>
       </thead>
       <tbody>
@@ -29,9 +30,10 @@
           <td>{{ record.positive }}</td>
           <td>{{ record.negative }}</td>
           <td>{{ record.flavors }}</td>
+          <td>{{ record.rating }}</td>
         </tr>
-        {% endfor %}
+      {% endfor %}
       </tbody>
     </table>
 
-{% endblock %}
+  {% endblock %}

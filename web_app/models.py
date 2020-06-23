@@ -29,7 +29,7 @@ class Strain(DB.Model):
     negative = DB.Column(DB.String(500), nullable = True)
     flavors = DB.Column(DB.String(128), nullable = True)
     rating = DB.Column(DB.Integer, nullable = True)
-    description = DB.Column(DB.String(500), nullable =True)
+    description = DB.Column(DB.String(1500), nullable =True)
 
     def __repr__(self):
         return f"<Strains id ={self.id} name={self.name} race={self.race} medical={self.medical} positive={self.positive} negative={self.negative} flavors={self.flavors} rating={self.ratings} description={self.description}>"

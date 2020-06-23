@@ -83,23 +83,22 @@ def create_table(data, database=DB):
 
 
     for key, value in data.items():
-        for k, v in cannabis_dict.items():
-            strain = Strain(name=key, race=value["race"], medical=','.join(value["effects"]["medical"]), positive=','.join(value["effects"]["positive"]), negative=','.join(value["effects"]["negative"]), flavors=','.join(value["flavors"]), ratings=k, description=v)
+        strain = Strain(name=key, race=value["race"], medical=','.join(value["effects"]["medical"]), positive=','.join(value["effects"]["positive"]), negative=','.join(value["effects"]["negative"]), flavors=','.join(value["flavors"]))
 
-            DB.session.add(strain)
+        DB.session.add(strain)
 
-            strains_dict['name'].append(key)
-            strains_dict['race'].append(value['race'])
-            strains_dict['medical'].append(value['effects']['medical'])
-            strains_dict['positive'].append(','.join(value['effects']['positive']))
-            strains_dict['negative'].append(','.join(value['effects']['negative']))
-            strains_dict['flavors'].append(','.join(value['flavors']))
+        strains_dict['name'].append(key)
+        strains_dict['race'].append(value['race'])
+        strains_dict['medical'].append(value['effects']['medical'])
+        strains_dict['positive'].append(','.join(value['effects']['positive']))
+        strains_dict['negative'].append(','.join(value['effects']['negative']))
+        strains_dict['flavors'].append(','.join(value['flavors']))
         
 
     # for k,v in cannabis_dict.items():
     #     strain = Strain(ratings=k, description=v)
 
-    #     DB.session.add(strain)
+        # DB.session.add(strain)
    
     DB.session.commit()
 

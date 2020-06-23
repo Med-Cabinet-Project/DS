@@ -73,7 +73,7 @@ def create_table(data, database=DB):
     """
 
     #Adding data from cannabis df to Strain record
-    CSV_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "csv", "cannabis.csv")
+    CSV_FILEPATH = os.path.join(os.path.dirname(__file__), "stats_model", "cannabis.csv")
     cannabis = pd.read_csv(CSV_FILEPATH)
     
     small = cannabis[['rating', 'description']]

@@ -1,5 +1,6 @@
 #web_app/models.py
 
+from flask import jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -94,6 +95,7 @@ def create_table(data, database=DB):
         strains_dict['negative'].append(','.join(value['effects']['negative']))
         strains_dict['flavors'].append(','.join(value['flavors']))
         
+        print(strains_dict)
 
     # for k,v in cannabis_dict.items():
     #     strain = Strain(ratings=k, description=v)
@@ -118,7 +120,8 @@ def parse_records(database_records):
         parsed_record = record.__dict__
         del parsed_record["_sa_instance_state"]
         parsed_records.append(parsed_record)
-    return parsed_records
+        
+    return jsonify(parsed_records)
 
 
 

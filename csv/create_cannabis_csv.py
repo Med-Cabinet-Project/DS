@@ -6,7 +6,7 @@ import os
 from pprint import pprint
 
 #Read CSV file
-cannabis = pd.read_csv(os.path.join(os.path.dirname(__file__), "cannabis_sample.csv"))
+cannabis_sample = pd.read_csv(os.path.join(os.path.dirname(__file__), "cannabis_sample.csv"))
 strains = pd.read_csv(os.path.join(os.path.dirname(__file__), "strains.csv"))
 
 #Checking that it displays properly
@@ -15,30 +15,39 @@ strains.head()
 
 #Dropping unnecessary columns
 strains = strains.drop(['Unnamed: 0'], axis=1)
-cannabis = cannabis.drop(['Type', 'Effects', 'Flavor'], axis=1)
 
 #Editing cannabis['Strain'] so that it can be compared to strains['name']
-cannabis['Strain'] = cannabis['Strain'].str.replace('-', ' ')
+cannabis_sample['Strain'] = cannabis['Strain'].str.replace('-', ' ')
 
 #Changing ['Strain'] to name so that I can merge on this column
-cannabis['name'] = cannabis['Strain']
+cannabis_sample['name'] = cannabis['Strain']
+cannabis_sample['positive'] = cannabis_sample['Effects']
+cannabis_sample['flavors'] = cannabis_sample['Flavor']
+cannabis_sample = cannabis_sample.drop(['Strain', 'Effects', 'Flavor'], axis=1)
 
-#Choosing columns that I want to combine
-cannabis = cannabis[['name', 'Rating', 'Description']]
+#Changing ['race'] to type so that I can merge on this column
+strains['Type'] = strains['race']
+strains = strains.drop(['race'], axis=1)
 
 #Merging two dataframes
 cannabis = pd.merge(strains, cannabis, on="name", how="outer")
 
+#Checking out new dataframe
+cannabis.isnull().sum()
+
 print(cannabis.head())
 
-cannabis = pd.read_csv(os.path.join(os.path.dirname(__file__), "cannabis.csv"))
+#Converting null values to NaN
+columns = ['positive_x', 'flavors_x', 'Type_x']
+cannabis[columns] = cannabis[columns].fillna(np.NaN)
+cannabis['Type_x'] = cannabis.loc[cannabis['Type_x'] == np.NaN,'Type_x'] = cannabis['Type_y']
+cannabis['flavors_x'] = cannabis.loc[cannabis['flavors_x'] == np.NaN,'flavors_x'] = cannabis['flavors_y']
+cannabis['positive_x'] = cannabis.loc[cannabis['positive_x'] == np.NaN,'positive_x'] = cannabis['positive_y']
 
+#Checking out columns after filling na
+cannabis.isnull().sum()
 
-small = cannabis[['rating', 'description']]
+#Dropping redundant columns
+cannabis = cannabis.drop(['positive_y', 'flavors_y', 'Type_y'], axis=1)
 
-cannabis_dict = small.set_index('rating')['description'].to_dict()
-# pprint(cannabis_dict)
-
-for key, value in cannabis_dict.items():
-    print(key)
-    print(value)
+cannabis.shape

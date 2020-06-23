@@ -15,7 +15,7 @@ strain_routes = Blueprint("strain_routes", __name__)
 @strain_routes.route("/<strain>", methods=['GET'])
 def root(strain):
     """
-        Root of the app.
+        Can query pickled strains dictionary to get information about a particular strain
     """
 
     PICKLE_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "strains.pkl")
@@ -24,11 +24,9 @@ def root(strain):
     return jsonify({"strain":pickle_dict[strain]})
 
 
-
-
 @strain_routes.route('/data', methods=["GET", "POST"])
 def roots():
-    """Base view."""
+    """View all strains in database."""
 
     create_table(extract_data())
     strain = Strain.query.all()

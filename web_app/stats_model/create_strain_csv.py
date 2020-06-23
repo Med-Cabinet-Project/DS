@@ -3,13 +3,10 @@ import json
 from pprint import pprint
 import pandas as pd
 import numpy as np
+from web_app.services.strains_service import API
 
 
-#API info
-API_KEY = os.getenv("API_KEY")
-BASE_URL = "http://strainapi.evanbusse.com/"
-ENDPOINT = "/strains/search/all"
-API = BASE_URL + API_KEY + ENDPOINT 
+
 
 #Downloading Info
 r = requests.get(url=API)

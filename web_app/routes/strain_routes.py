@@ -21,7 +21,6 @@ def root():
         Return first 100 strains in pickle dict
     """
     new_d = {}
-
     counter = 0
     n = 10 # number of first items
     

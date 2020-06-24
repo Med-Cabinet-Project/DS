@@ -71,7 +71,7 @@ def create_table(data, database=DB):
     <id =1 name=Afpak race=hybrid medical=Depression,Insomnia,Pain,Stress,Lack of Appetite positive=Relaxed,Hungry,Happy,Sleepy negative=Dizzy flavors=Earthy,Chemical,Pine>
     """
 
-    for (key, value), (k, v) in zip(data.items(), cannabis_dict.items()):
+    for key, value in data.items():
         strain = Strain(name=key, race=value["race"], medical=','.join(value["effects"]["medical"]), positive=','.join(value["effects"]["positive"]), negative=','.join(value["effects"]["negative"]), flavors=','.join(value["flavors"]))
 
         DB.session.add(strain)

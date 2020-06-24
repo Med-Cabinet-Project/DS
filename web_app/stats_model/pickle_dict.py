@@ -9,12 +9,8 @@ cannabis = pd.read_csv(os.path.join(os.path.dirname(__file__), "cannabis.csv"))
 cannabis['description'] = cannabis['description'].str.strip()
 cannabis_cleaned = cannabis.drop(['Unnamed: 0'], axis=1).copy()
 
-# print(cannabis_cleaned.columns)
-# print(cannabis_cleaned.isnull().sum())
-
 columns = ['type', 'medical', 'positive', 'negative', 'flavor', 'rating','description']
 cannabis_cleaned[columns] = cannabis_cleaned[columns].fillna("")
-
 
 cannabis_dict = cannabis_cleaned.set_index('name')[['type', 'medical', 'positive', 'negative', 'flavor', 'rating','description']].T.to_dict('dict')
 
@@ -29,8 +25,6 @@ with open(MODEL_FILEPATH, "wb") as model_file:
 cannabis_num_dict = {}
 cannabis_num_dict = {i:(k,v) for (i), (k,v) in zip(cannabis['Unnamed: 0'], cannabis_dict.items())}
 # pprint(cannanbis_num_dict)
-
-breakpoint()
 
 MODEL2_FILEPATH = os.path.join(os.path.dirname(__file__), "strains_num.pkl")
 

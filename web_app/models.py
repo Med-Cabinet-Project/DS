@@ -21,7 +21,7 @@ migrate = Migrate()
 
 class Strain(DB.Model):
     __tablename__ = "strains"
-    id = DB.Column(DB.BigInteger, primary_key = True, autoincrement=True)
+    id = DB.Column(DB.Integer, primary_key = True, autoincrement=True)
     name = DB.Column(DB.String(128), nullable = True)
     race = DB.Column(DB.String(128), nullable = True)
     medical = DB.Column(DB.String(500), nullable = True)

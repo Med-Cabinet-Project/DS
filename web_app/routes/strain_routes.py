@@ -3,6 +3,7 @@
 from flask import Blueprint, render_template, flash, redirect, jsonify
 import requests
 import pickle
+import json
 import os
 from web_app.models import DB, Strain, extract_data, create_table, parse_records
 from web_app.services.strains_service import API 

@@ -16,8 +16,8 @@ strains.head()
 #Dropping unnecessary columns
 strains = strains.drop(['Unnamed: 0'], axis=1)
 
-#Editing cannabis['Strain'] so that it can be compared to strains['name']
-cannabis_sample['Strain'] = cannabis['Strain'].str.replace('-', ' ')
+#Editing cannabis['name'] so that it can be compared to strains['name']
+strains['name'] = strains['name'].str.replace(' ', '-')
 
 #Changing ['Strain'] to name so that I can merge on this column
 cannabis_sample['name'] = cannabis['Strain']
@@ -51,3 +51,8 @@ cannabis.isnull().sum()
 cannabis = cannabis.drop(['positive_y', 'flavors_y', 'Type_y'], axis=1)
 
 cannabis.shape
+
+#Clean up
+cannabis['name']=cannabis['name'].str.replace('- ', '-')
+cannabis['name']=cannabis['name'].astype(str)
+cannabis['name']=cannabis['name'].str.replace('""', '')

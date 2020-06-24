@@ -93,8 +93,8 @@ def create_table(data, database=DB):
         strains_dict['positive'].append(value['effects']['positive'])
         strains_dict['negative'].append(value['effects']['negative'])
         strains_dict['flavors'].append(value['flavors'])
-        strains_dict['rating'].append(value[k])
-        strains_dict['description'].append(value[v])
+        strains_dict['rating'].append(k)
+        strains_dict['description'].append(v)
 
     DB.session.commit()
     

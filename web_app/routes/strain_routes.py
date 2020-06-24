@@ -14,20 +14,18 @@ PICKLE_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "s
 pickle_dict = pickle.load(open(PICKLE_FILEPATH, "rb"))
 
 
+
 @strain_routes.route("/<strain>", methods=['GET'])
-def root(strain):
+def get_strain(strain):
     """
         Can query pickled strains dictionary to get information about a particular strain
     """
-
-    PICKLE_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "strains.pkl")
-    pickle_dict = pickle.load(open(PICKLE_FILEPATH, "rb"))
 
     return jsonify({"strain":pickle_dict[strain]})
 
 
 @strain_routes.route('/data', methods=["GET", "POST"])
-def roots():
+def data():
     """View all strains in database."""
 
     create_table(extract_data())

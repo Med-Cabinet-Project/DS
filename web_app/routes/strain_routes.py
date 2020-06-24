@@ -28,7 +28,7 @@ def root():
         new_d[k] = v 
 
         if counter >= n: 
-            break counter+=1
+            counter+=1
             print(new_d)
 
     return jsonify(new_d)

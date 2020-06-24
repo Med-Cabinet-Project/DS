@@ -82,11 +82,19 @@ def create_table(data, database=DB):
     #Creating a dictionary for the json object
     strains_dict = {'name': [],'race':[], 'medical':[], 'positive':[], 'negative':[], 'flavors':[], 'ratings':[], 'description':[], 'rating':[], 'description':[]}
 
-    for (key, value), (k) in zip(data.items(), cannabis_dict.items()):
+    for (key, value), (k, v) in zip(data.items(), cannabis_dict.items()):
         strain = Strain(name=key, race=value["race"], medical=','.join(value["effects"]["medical"]), positive=','.join(value["effects"]["positive"]), negative=','.join(value["effects"]["negative"]), flavors=','.join(value["flavors"]), rating=k)
 
         DB.session.add(strain)
 
+        strains_dict['name'].append(key)
+        strains_dict['race'].append(value['race'])
+        strains_dict['medical'].append(value['effects']['medical'])
+        strains_dict['positive'].append(value['effects']['positive'])
+        strains_dict['negative'].append(value['effects']['negative'])
+        strains_dict['flavors'].append(value['flavors'])
+        strains_dict['rating'].append(value['k'])
+        strains_dict['description'].append(value['v'])
 
     DB.session.commit()
     

@@ -130,4 +130,5 @@ dmypy.json
 
 #Database
 *.db
+migrations 
 

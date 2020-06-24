@@ -15,17 +15,24 @@ strain_routes = Blueprint("strain_routes", __name__)
 PICKLE_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "strains.pkl")
 pickle_dict = pickle.load(open(PICKLE_FILEPATH, "rb"))
 
-# print(type(pickle_dict))
-
-
 @strain_routes.route("/", methods=['GET', 'POST'])
 def root():
     """
         Return first 100 strains in pickle dict
     """
+    new_d = {}
 
-    return 'Hello'
+    counter = 0
+    n = 10 # number of first items
+    
+    for k,v in pickle_dict.items(): 
+        new_d[k] = v 
 
+        if counter >= n: 
+            break counter+=1
+            print(new_d)
+
+    return jsonify(new_d)
 
 @strain_routes.route("/<strain>", methods=['GET'])
 def get_strain(strain):

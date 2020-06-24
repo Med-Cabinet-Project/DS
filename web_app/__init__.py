@@ -17,6 +17,7 @@ def create_app():
     APP.config["SECRET_KEY"] = SECRET_KEY
 
     APP.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
+    APP.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     DB.init_app(APP)
     migrate.init_app(APP, DB)
 

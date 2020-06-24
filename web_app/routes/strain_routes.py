@@ -6,6 +6,8 @@ import pickle
 import os
 from web_app.models import DB, Strain, extract_data, create_table, parse_records
 from web_app.services.strains_service import API 
+from pprint import pprint
+
 
 
 strain_routes = Blueprint("strain_routes", __name__)
@@ -13,6 +15,16 @@ strain_routes = Blueprint("strain_routes", __name__)
 PICKLE_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "strains.pkl")
 pickle_dict = pickle.load(open(PICKLE_FILEPATH, "rb"))
 
+# print(type(pickle_dict))
+
+
+@strain_routes.route("/", methods=['GET', 'POST'])
+def root():
+    """
+        Return first 100 strains in pickle dict
+    """
+
+    return 'Hello'
 
 
 @strain_routes.route("/<strain>", methods=['GET'])

@@ -28,10 +28,10 @@ class Strain(DB.Model):
     positive = DB.Column(DB.String(500), nullable = True)
     negative = DB.Column(DB.String(500), nullable = True)
     flavors = DB.Column(DB.String(128), nullable = True)
-    rating = DB.Column(DB.Integer, nullable = True)
+    # rating = DB.Column(DB.Integer, nullable = True)
 
     def __repr__(self):
-        return f"<Strains id ={self.id} name={self.name} race={self.race} medical={self.medical} positive={self.positive} negative={self.negative} flavors={self.flavors} rating={self.ratings}>"
+        return f"<Strains id ={self.id} name={self.name} race={self.race} medical={self.medical} positive={self.positive} negative={self.negative} flavors={self.flavors}>" #rating={self.ratings}>
 
 def extract_data(api=API):
     """
@@ -71,30 +71,10 @@ def create_table(data, database=DB):
     <id =1 name=Afpak race=hybrid medical=Depression,Insomnia,Pain,Stress,Lack of Appetite positive=Relaxed,Hungry,Happy,Sleepy negative=Dizzy flavors=Earthy,Chemical,Pine>
     """
 
-    #Adding data from cannabis df to Strain record
-    CSV_FILEPATH = os.path.join(os.path.dirname(__file__), "stats_model", "cannabis.csv")
-    cannabis = pd.read_csv(CSV_FILEPATH)
-    
-    small = cannabis[['rating', 'description']]
-
-    cannabis_dict = small.set_index('rating')['description'].to_dict()
-
-    #Creating a dictionary for the json object
-    strains_dict = {'name': [],'race':[], 'medical':[], 'positive':[], 'negative':[], 'flavors':[], 'ratings':[], 'description':[], 'rating':[], 'description':[]}
-
     for (key, value), (k, v) in zip(data.items(), cannabis_dict.items()):
-        strain = Strain(name=key, race=value["race"], medical=','.join(value["effects"]["medical"]), positive=','.join(value["effects"]["positive"]), negative=','.join(value["effects"]["negative"]), flavors=','.join(value["flavors"]), rating=k)
+        strain = Strain(name=key, race=value["race"], medical=','.join(value["effects"]["medical"]), positive=','.join(value["effects"]["positive"]), negative=','.join(value["effects"]["negative"]), flavors=','.join(value["flavors"]))
 
         DB.session.add(strain)
-
-        strains_dict['name'].append(key)
-        strains_dict['race'].append(value['race'])
-        strains_dict['medical'].append(value['effects']['medical'])
-        strains_dict['positive'].append(value['effects']['positive'])
-        strains_dict['negative'].append(value['effects']['negative'])
-        strains_dict['flavors'].append(value['flavors'])
-        strains_dict['rating'].append(k)
-        strains_dict['description'].append(v)
 
     DB.session.commit()
     

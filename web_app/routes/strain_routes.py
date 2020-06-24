@@ -13,24 +13,30 @@ from pprint import pprint
 
 strain_routes = Blueprint("strain_routes", __name__)
 
-PICKLE_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "strains.pkl")
-pickle_dict = pickle.load(open(PICKLE_FILEPATH, "rb"))
+
 
 @strain_routes.route("/", methods=['GET', 'POST'])
 def root():
     """
         Return first 100 strains in pickle dict
     """
+    PICKLE2_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "strains_num.pkl")
+    pickle2_dict = pickle.load(open(PICKLE2_FILEPATH, "rb"))
+
+    # pprint(pickle2_dict)
+
     new_d = {}
     counter = 0
     n = 10 # number of first items
     
-    for k,v in pickle_dict.items(): 
+    for k,v in pickle2_dict.items(): 
         new_d[k] = v 
 
         if counter >= n: 
             counter+=1
             print(new_d)
+    
+    
 
     return jsonify(new_d)
 
@@ -39,6 +45,8 @@ def get_strain(strain):
     """
         Can query pickled strains dictionary to get information about a particular strain
     """
+    PICKLE_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "strains.pkl")
+    pickle_dict = pickle.load(open(PICKLE_FILEPATH, "rb"))
 
     return jsonify({"strain":pickle_dict[strain]})
 

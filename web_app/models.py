@@ -77,7 +77,7 @@ def create_table(data, database=DB):
         DB.session.add(strain)
 
     DB.session.commit()
-    
+
 
 def parse_records(database_records):
     """

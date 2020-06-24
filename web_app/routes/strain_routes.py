@@ -10,6 +10,8 @@ from web_app.services.strains_service import API
 
 strain_routes = Blueprint("strain_routes", __name__)
 
+PICKLE_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "strains.pkl")
+pickle_dict = pickle.load(open(PICKLE_FILEPATH, "rb"))
 
 
 @strain_routes.route("/<strain>", methods=['GET'])

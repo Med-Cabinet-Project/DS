@@ -52,15 +52,17 @@ def data():
 @strain_routes.route('/types/<race>', methods=['GET'])
 def get_type(race):
 
-    records = Strain.query.filter_by(race = race).order_by(func.random()).limit(5).all()
+    records = Strain.query.filter_by(race=race).order_by(func.random()).limit(5).all()
     types = []
     for typ in records:
         types.append({
             "id":typ.id, 
             "name": typ.name,
+            "type": typ.race,
             "medical":typ.medical, 
             "positive": typ.positive,
-            "flavor": typ.flavors
+            "flavor": typ.flavors,
+            "negative": typ.negative
         })
     return jsonify(types)
 
@@ -73,9 +75,11 @@ def get_medical(medical):
         medicals.append({
             "id":med.id, 
             "name": med.name,
+            "type": med.race,
             "medical":med.medical, 
             "positive": med.positive,
-            "flavor": med.flavors
+            "flavor": med.flavors, 
+            "negative": med.negative
         })
     return jsonify(medicals)
 
@@ -88,9 +92,11 @@ def get_positve(positive):
         positives.append({
             "id":pos.id, 
             "name": pos.name,
+            "type": pos.race,
             "medical":pos.medical, 
             "positive": pos.positive,
-            "flavor": pos.flavors
+            "flavor": pos.flavors, 
+            "negative": pos.negative
         })
     return jsonify(positives)
 
@@ -103,8 +109,10 @@ def get_flavors(flavors):
         tastes.append({
             "id":tas.id, 
             "name": tas.name,
+            "type": med.race,
             "medical":tas.medical, 
             "positive": tas.positive,
-            "flavor": tas.flavors
+            "flavor": tas.flavors, 
+            "negative": tas.negative
         })
     return jsonify(tastes)

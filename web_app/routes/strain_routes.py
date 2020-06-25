@@ -37,6 +37,9 @@ def get_strain(strain):
 def data():
     """View all strains in database."""
 
+    DB.drop_all()
+    DB.create_all()
+
     create_table(extract_data())
     strain = Strain.query.all()
     records = parse_records(strain)

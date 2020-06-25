@@ -46,7 +46,7 @@ def data():
 
 #More query routes 
 #https://sqlalchemy-utils.readthedocs.io/en/latest/data_types.html
-@strain_routes.route('/races/<race>', methods=['GET'])
+@strain_routes.route('/types/<race>', methods=['GET'])
 def get_type(race):
 
     records = Strain.query.filter_by(race = race).order_by(func.random()).limit(5).all()

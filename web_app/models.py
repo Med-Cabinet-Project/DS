@@ -97,3 +97,4 @@ def parse_records(database_records):
         
     return (parsed_records)
 
+

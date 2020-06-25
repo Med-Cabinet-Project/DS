@@ -90,14 +90,14 @@ def get_positve(positive):
 
 @strain_routes.route('/flavors/<flavors>', methods=['GET'])
 def get_flavors(flavors):
-    records = Strain.query.filter(Strain.flavor.ilike(f"%{flavors}%", escape="/")).order_by(func.random()).limit(5).all()
+    records = Strain.query.filter(Strain.flavors.ilike(f"%{flavors}%", escape="/")).order_by(func.random()).limit(5).all()
     
-    flavors = []
-    for flav in records:
-        flavors.append({
-            "id":flav.id, 
-            "name": flav.name,
-            "medical":flav.medical, 
-            "positive": flav.positive
+    tastes = []
+    for tas in records:
+        tastes.append({
+            "id":tas.id, 
+            "name": tas.name,
+            "medical":tas.medical, 
+            "positive": tas.positive
         })
-    return jsonify(flavors)
+    return jsonify(tastes)

@@ -24,17 +24,6 @@ def root():
     PICKLE2_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "strains_num.pkl")
     pickle2_dict = pickle.load(open(PICKLE2_FILEPATH, "rb"))
 
-    # new_d = {}
-    # counter = 0
-    # n = 10 # number of first items
-    
-    # for k,v in pickle2_dict.items(): 
-    #     new_d[k] = v 
-
-    #     if counter >= n: 
-    #         counter+=1
-    #         print(new_d)
-
     return jsonify(pickle2_dict)
 
 @strain_routes.route("/<strain>", methods=['GET'])

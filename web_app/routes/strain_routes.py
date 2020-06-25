@@ -109,7 +109,7 @@ def get_flavors(flavors):
         tastes.append({
             "id":tas.id, 
             "name": tas.name,
-            "type": med.race,
+            "type": tas.race,
             "medical":tas.medical, 
             "positive": tas.positive,
             "flavor": tas.flavors, 

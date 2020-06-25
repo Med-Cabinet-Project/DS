@@ -60,6 +60,7 @@ def get_type(race):
             "name": typ.name,
             "medical":typ.medical, 
             "positive": typ.positive
+            "flavor": typ.flavors
         })
     return jsonify(types)
 
@@ -74,6 +75,7 @@ def get_medical(medical):
             "name": med.name,
             "medical":med.medical, 
             "positive": med.positive
+            "flavor": med.flavors
         })
     return jsonify(medicals)
 
@@ -88,10 +90,11 @@ def get_positve(positive):
             "name": pos.name,
             "medical":pos.medical, 
             "positive": pos.positive
+            "flavor": pos.flavors
         })
     return jsonify(positives)
 
-@strain_routes.route('/flavors/<flavors>', methods=['GET'])
+@strain_routes.route('/flavor/<flavors>', methods=['GET'])
 def get_flavors(flavors):
     records = Strain.query.filter(Strain.flavors.ilike(f"%{flavors}%", escape="/")).order_by(func.random()).limit(5).all()
     
@@ -102,5 +105,6 @@ def get_flavors(flavors):
             "name": tas.name,
             "medical":tas.medical, 
             "positive": tas.positive
+            "flavor": tas.flavors
         })
     return jsonify(tastes)

@@ -6,10 +6,10 @@ import os
 import pickle
 import json
 
-
 strain_routes = Blueprint("strain_routes", __name__)
 
-@app.before_request
+#CORS requirement to access apis
+@strain_routes.before_request
 def before_request():
     """ CORS preflight, required for off-server access """
 
@@ -23,8 +23,7 @@ def before_request():
     if request.method == "OPTIONS":
         return _build_cors_prelight_response()
 
-@app.after_request
-
+@strain_routes.after_request
 def after_request(response):
     """ CORS headers, required for off-server access """
 
@@ -67,7 +66,6 @@ def data():
     return render_template("data.html", records=records, message="Home Page")
 
 #More query routes 
-#https://sqlalchemy-utils.readthedocs.io/en/latest/data_types.html
 @strain_routes.route('/types/<race>', methods=['GET'])
 def get_type(race):
 

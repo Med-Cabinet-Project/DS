@@ -1,6 +1,6 @@
 #web_app/routes/strain_routes.py
 
-from flask import Blueprint, request, render_template, flash, redirect, jsonify
+from flask import Blueprint, request, render_template, flash, redirect, jsonify, make_response
 import os
 import pickle
 import json
@@ -11,6 +11,26 @@ from web_app.services.strains_service import API
 from pprint import pprint
 
 strain_routes = Blueprint("strain_routes", __name__)
+
+@app.before_request
+def before_request():
+    """ CORS preflight, required for off-server access """
+    def _build_cors_prelight_response():
+        response = make_response()
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.headers.add("Access-Control-Allow-Headers", "*")
+        response.headers.add("Access-Control-Allow-Methods", "*")
+        return response
+
+    if request.method == "OPTIONS":
+        return _build_cors_prelight_response()
+
+@app.after_request
+def after_request(response):
+    """ CORS headers, required for off-server access """
+    header = response.headers
+    header['Access-Control-Allow-Origin'] = '*'
+    return response
 
 @strain_routes.route("/", methods=['GET', 'POST'])
 def root():

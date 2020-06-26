@@ -1,7 +1,6 @@
 #web_app/routes/strain_routes.py
 
 from flask import Blueprint, request, render_template, flash, redirect, jsonify
-from flask import Blueprint, request, render_template, flash, redirect, jsonify, make_response
 import os
 import pickle
 import json
@@ -18,9 +17,11 @@ def before_request():
         response.headers.add("Access-Control-Allow-Origin", "*")
         response.headers.add("Access-Control-Allow-Headers", "*")
         response.headers.add("Access-Control-Allow-Methods", "*")
+
         return response
 
     if request.method == "OPTIONS":
+        
         return _build_cors_prelight_response()
 
 @strain_routes.after_request
@@ -36,6 +37,7 @@ def root():
     """
         Return first 100 strains in pickle dict
     """
+
     PICKLE2_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "strains_num.pkl")
     pickle2_dict = pickle.load(open(PICKLE2_FILEPATH, "rb"))
 
@@ -72,7 +74,9 @@ def get_type(race):
     """User can query Strains DB based on type/race preference - sativa, indica, hybrid"""
 
     records = Strain.query.filter_by(race=race).order_by(func.random()).limit(5).all()
+
     types = []
+
     for typ in records:
         types.append({
             "id":typ.id, 
@@ -83,6 +87,7 @@ def get_type(race):
             "flavor": typ.flavors,
             "negative": typ.negative
         })
+
     return jsonify(types)
 
 @strain_routes.route('/medical/<medical>', methods=['GET'])
@@ -93,6 +98,7 @@ def get_medical(medical):
     records = Strain.query.filter(Strain.medical.ilike(f"%{medical}%", escape="/")).order_by(func.random()).limit(5).all()
     
     medicals = []
+
     for med in records:
         medicals.append({
             "id":med.id, 
@@ -103,6 +109,7 @@ def get_medical(medical):
             "flavor": med.flavors, 
             "negative": med.negative
         })
+
     return jsonify(medicals)
 
 @strain_routes.route('/positive/<positive>', methods=['GET'])
@@ -113,6 +120,7 @@ def get_positve(positive):
     records = Strain.query.filter(Strain.positive.ilike(f"%{positive}%", escape="/")).order_by(func.random()).limit(5).all()
     
     positives = []
+
     for pos in records:
         positives.append({
             "id":pos.id, 
@@ -123,6 +131,7 @@ def get_positve(positive):
             "flavor": pos.flavors, 
             "negative": pos.negative
         })
+
     return jsonify(positives)
 
 @strain_routes.route('/flavors/<flavors>', methods=['GET'])
@@ -133,6 +142,7 @@ def get_flavors(flavors):
     records = Strain.query.filter(Strain.flavors.ilike(f"%{flavors}%", escape="/")).order_by(func.random()).limit(5).all()
     
     tastes = []
+
     for tas in records:
         tastes.append({
             "id":tas.id, 
@@ -143,4 +153,5 @@ def get_flavors(flavors):
             "flavor": tas.flavors, 
             "negative": tas.negative
         })
+
     return jsonify(tastes)

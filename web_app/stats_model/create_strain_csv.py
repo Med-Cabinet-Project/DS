@@ -1,12 +1,11 @@
+#web_app/stats_model/create_strain_csv.py
+
 import requests
 import json
 from pprint import pprint
 import pandas as pd
 import numpy as np
 from web_app.services.strains_service import API
-
-
-
 
 #Downloading Info
 r = requests.get(url=API)

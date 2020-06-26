@@ -1,0 +1,9 @@
+requests
+pandas
+gunicorn
+pyscopg2-binary
+python-dotenv
+Flask
+Flask-SQLAlchemy
+FLask-Migrate
+flask-cors

@@ -5,6 +5,7 @@ import os
 import pickle
 import json
 from sqlalchemy.sql.expression import func
+from sqlalchemy import or_
 from web_app.models import DB, Strain, extract_data, create_table, parse_records
 from web_app.services.strains_service import API 
 
@@ -138,3 +139,25 @@ def get_flavors(flavors):
             "negative": tas.negative
         })
     return jsonify(tastes)
+
+@strain_routes.route('/query/<medical>/<medical1>/<positive>', methods=['GET'])
+def get_match(medical, medical1, positive): #,  medical1, positive1):
+    """User can query Strains DB based on medical and pain."""
+
+    records = Strain.query.filter(or_(Strain.medical.ilike(f"%{medical}%", escape="/")),
+                                     (Strain.medical.ilike(f"%{medical1}%", escape="/")),
+                                     (Strain.positive.ilike(f"%{positive}%", escape="/"))).order_by(func.random()).limit(5).all()
+    
+    matches = []
+
+    for match in records:
+        matches.append({
+            "id":match.id, 
+            "name": match.name,
+            "type": match.race,
+            "medical":match.medical, 
+            "positive": match.positive,
+            "flavor": match.flavors, 
+            "negative": match.negative
+        })
+    return jsonify(matches)

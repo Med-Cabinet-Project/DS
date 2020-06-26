@@ -1,8 +1,0 @@
-requests
-pandas
-Flask
-Flask-SQLAlchemy
-Flask-Migrate
-gunicorn
-psycopg2-binary
-python-dotenv

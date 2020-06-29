@@ -31,7 +31,7 @@ type: 	     "hybrid"
 * ``/data``
 User can view a static html table of all the different strains stored in the Postgres Database.
 
-*`` /types/<race>``
+* ``/types/<race>``
 Users can enter the specific type/family of weed they are interested in, i.e. hybrid, indica, sativa This query return a randomized list of five strains that are in this category.
 https://med-cabinet-project.herokuapp.com/types/indica
 
@@ -150,7 +150,7 @@ https://github.com/Med-Cabinet-Project/DS/blob/master/requirements.txt
 
 ## Testing
 used curl to test that endpoints were able to retrieve correct information 
-i.e. curl med-cabinet-project.herokuapp.com/query/pain/depression/happy
+Example: ``curl med-cabinet-project.herokuapp.com/query/pain/depression/happy``
 
 ```
 [{"flavor":"Berry,Earthy,Sweet","id":1370,"medical":"Depression,Insomnia,Pain,Stress,Lack of Appetite","name":"Panda OG","negative":"Paranoid,Anxious","positive":"Relaxed,Euphoric,Happy,Talkative,Focused","type":"hybrid"},{"flavor":"Citrus,Pine,Honey","id":1276,"medical":"Depression,Insomnia,Pain,Stress,Lack of Appetite,Headache","name":"Neptune Kush","negative":"Dizzy,Dry Mouth,Dry Eyes","positive":"Relaxed,Hungry,Happy,Uplifted,Giggly","type":"indica"},{"flavor":"Lemon,Citrus,Pine","id":973,"medical":"Depression,Pain,Stress,Nausea,Headache,Headaches","name":"Jack the Ripper","negative":"Dry Mouth,Paranoid,Dry Eyes,Anxious","positive":"Euphoric,Happy,Energetic,Talkative,Uplifted","type":"sativa"},{"flavor":"Sweet,Vanilla,Earthy","id":236,"medical":"Depression,Insomnia,Pain,Stress,Nausea","name":"Blissful Wizard","negative":"","positive":"Relaxed,Euphoric,Happy,Creative,Talkative","type":"hybrid"},{"flavor":"Citrus,Lemon,Earthy","id":870,"medical":"Depression,Pain,Stress,Lack of Appetite,Fatigue","name":"Harmony","negative":"Dizzy,Dry Mouth,Dry Eyes","positive":"Relaxed,Euphoric,Happy,Creative,Uplifted","type":"hybrid"}]

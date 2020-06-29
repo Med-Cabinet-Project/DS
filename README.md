@@ -7,18 +7,18 @@ Med Cabinet is a cannibis recommendation service. Users are able to query a 2K +
 
 
 ## BASE URL
-[https://med-cabinet-project.herokuapp.com/] (https://med-cabinet-project.herokuapp.com/)
+https://med-cabinet-project.herokuapp.com/
 
 Here user can see a json list holding dictioanries of all the different strains and different information about it.
 
 
 ### ENDPOINTS
-* "/<strain>"
+* /<strain>
 
 User enters a string query for a strain name and they get a json object, similar to the one below: 
+https://med-cabinet-project.herokuapp.com/Afpak
 
 ```
-[https://med-cabinet-project.herokuapp.com/Afpak](https://med-cabinet-project.herokuapp.com/Afpak)
 description: "Afpak, named for its dir…ving difficulty eating."
 flavor: 	 "Pine,Spicy/Herbal,Earthy"
 medical: 	 "Depression,Insomnia,Pain,Stress,Lack of Appetite"
@@ -28,17 +28,15 @@ rating: 	 4.2
 type: 	     "hybrid"
 ```
 
-* "/data"
+* /data
 User can view a static html table of all the different strains stored in the Postgres Database.
 
-* "/types/<race>"
+* /types/<race>
 Users can enter the specific type/family of weed they are interested in, i.e. hybrid, indica, sativa This query return a randomized list of five strains that are in this category.
+https://med-cabinet-project.herokuapp.com/types/indica
 
-```
-[https://med-cabinet-project.herokuapp.com/types/indica](https://med-cabinet-project.herokuapp.com/types/indica)
-```
 
-* "/medical/<medical>"
+* /medical/<medical>
 Users can enter specific medical conditions/symptoms and they will receive 5 different strains said to 
 treat or help with the condition. 
 
@@ -57,9 +55,9 @@ List of medical conditions in database
 - Spasticity
 - Stress
 
-```
-[https://med-cabinet-project.herokuapp.com/medical/depression](https://med-cabinet-project.herokuapp.com/medical/depression)
+https://med-cabinet-project.herokuapp.com/medical/depression
 
+```
 flavor:	  "Earthy,Sweet,Pine"
 id: 	  250
 medical:  "Depression,Pain,Stress,Cramps,Lack of Appetite"
@@ -69,8 +67,7 @@ positive  "Euphoric,Happy,Creative,Energetic,Uplifted"
 type:     "hybrid"
 ```
 
-* "/positive/<positive>"
-
+* /positive/<positive>
 Users can enter specific positive effects they wish to experiences and they will receive 5 different 
 strains that allow the user to experience said feeling. 
 
@@ -88,9 +85,9 @@ List of positive effects in database
 - Tingly
 - Uplifted
 
-```
-[https://med-cabinet-project.herokuapp.com/positive/happy](https://med-cabinet-project.herokuapp.com/positive/happy)
+https://med-cabinet-project.herokuapp.com/positive/happy
 
+```
 flavor:	  "Woody,Sweet,Diesel"
 id:  	  1734
 medical:  "Depression,Pain,Stress,Nausea,Headache,Headaches"
@@ -100,33 +97,29 @@ positive: "Relaxed,Happy,Energetic,Talkative,Uplifted"
 type:  	  "sativa"
 ```
 
-* "/flavors/<flavors>"
-
+* /flavors/<flavors>
 Users can query the database for specific flavors that they enjoy and will receive 5 different strains 
 that come in that flavor. 
+https://med-cabinet-project.herokuapp.com/flavors/earthy
 
 ```
-[https://med-cabinet-project.herokuapp.com/flavors/earthy](https://med-cabinet-project.herokuapp.com/flavors/earthy)
-
-	
 flavor:	  "Earthy,Sweet,Citrus"
 id:  	  782
 medical:  "Depression,Pain,Stress,Fatigue,Headaches"
 name:	  "Golden Goat"
 negative: "Dizzy,Dry Mouth,Paranoid,Dry Eyes,Anxious"
-positive:  "Relaxed,Euphoric,Happy,Energetic,Uplifted"
+positive: "Relaxed,Euphoric,Happy,Energetic,Uplifted"
 type:	
 ```
 
-* "/query/<medical>/<medical>/<positive>"
+* /query/<medical>/<medical>/<positive>
 
 Users are looking for more specific strains are able to query the database based on two medical symptoms 
 and one positive effect they are looking to achieve. This query will return up to 5 strains if there are 
 matches in the database. 
+https://med-cabinet-project.herokuapp.com/query/nausea/pain/happy
 
 ```
-[https://med-cabinet-project.herokuapp.com/query/nausea/pain/happy](https://med-cabinet-project.herokuapp.com/query/nausea/pain/happy)
-
 flavor:	  "Citrus,Flowery,Sweet"
 id:	      1371
 medical:  "Depression,Pain,Stress,Nausea,Headache,Fatigue"
@@ -140,16 +133,19 @@ type:	  "sativa"
 
 ## Code Links
 
-Below are links to resources used to create this project. 
+Below are links to resources used to create this project:
 
 * Datasets (https://github.com/Med-Cabinet-Project/DS/tree/master/web_app/stats_model/csv) 
 cannabis.csv is a merged dataframe of both the strains.csv (csv created from the [Strains's API](http://strains.evanbusse.com/)) and the csv from [Kaggle](https://www.kaggle.com/kingburrito666/cannabis-strains). 
 
-* Pickled models (https://github.com/Med-Cabinet-Project/DS/tree/master/web_app/stats_model/pickle_models)
+* Pickled models https://github.com/Med-Cabinet-Project/DS/tree/master/web_app/stats_model/pickle_models
 These are the pickled dictionaries used for the home route and the strains route
 
-* API (https://github.com/Med-Cabinet-Project/DS/tree/master/web_app)
+* API https://github.com/Med-Cabinet-Project/DS/tree/master/web_app
 This is where the code for creating the different endpoints can be located. 
+
+* Packages/Technologies used
+https://github.com/Med-Cabinet-Project/DS/blob/master/requirements.txt
 
 
 ## Testing

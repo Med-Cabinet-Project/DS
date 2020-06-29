@@ -131,4 +131,4 @@ dmypy.json
 #Database
 *.db
 migrations 
-
+*.sqlite3

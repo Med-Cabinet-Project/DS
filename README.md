@@ -149,7 +149,8 @@ https://github.com/Med-Cabinet-Project/DS/blob/master/requirements.txt
 
 
 ## Testing
-used curl to test that endpoints were able to retrieve correct information 
+Used curl to test that endpoints were able to retrieve correct information.
+
 Example: ``curl med-cabinet-project.herokuapp.com/query/pain/depression/happy``
 
 ```

@@ -6,7 +6,7 @@ import os
 from pprint import pprint
 
 #Clean cannabis csv
-cannabis = pd.read_csv(os.path.join(os.path.dirname(__file__), "cannabis.csv"))
+cannabis = pd.read_csv(os.path.join(os.path.dirname(__file__), "csv", "cannabis.csv"))
 cannabis['description'] = cannabis['description'].str.strip()
 cannabis_cleaned = cannabis.copy()
 
@@ -16,7 +16,7 @@ cannabis_cleaned[columns] = cannabis_cleaned[columns].fillna("")
 #Pickle dictionary for strains route
 cannabis_dict = cannabis_cleaned.set_index('name')[['type', 'medical', 'positive', 'negative', 'flavor', 'rating','description']].T.to_dict('dict')
 
-MODEL_FILEPATH = os.path.join(os.path.dirname(__file__), "strains.pkl")
+MODEL_FILEPATH = os.path.join(os.path.dirname(__file__), "pickle_models", "strains.pkl")
 
 with open(MODEL_FILEPATH, "wb") as model_file:
     print("SAVE PICKLE 1")
@@ -26,7 +26,7 @@ with open(MODEL_FILEPATH, "wb") as model_file:
 #Pickle dictionary for numbered routes
 cannabis_ordered = cannabis_cleaned.to_dict(orient='records')
 
-MODEL2_FILEPATH = os.path.join(os.path.dirname(__file__), "strains_num.pkl")
+MODEL2_FILEPATH = os.path.join(os.path.dirname(__file__), "pickle_models", "strains_num.pkl")
 
 with open(MODEL2_FILEPATH, "wb") as model_file:
     print("SAVE PICKLE 2")

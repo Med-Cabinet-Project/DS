@@ -6,8 +6,8 @@ import os
 from pprint import pprint
 
 #Read CSV file
-cannabis_sample = pd.read_csv(os.path.join(os.path.dirname(__file__), "cannabis_sample.csv"))
-strains = pd.read_csv(os.path.join(os.path.dirname(__file__), "strains.csv"))
+cannabis_sample = pd.read_csv(os.path.join(os.path.dirname(__file__), "csv", "cannabis_sample.csv"))
+strains = pd.read_csv(os.path.join(os.path.dirname(__file__), "csv", "strains.csv"))
 
 #Checking that it displays properly
 cannabis.head()

@@ -36,14 +36,14 @@ def after_request(response):
 @strain_routes.route("/", methods=['GET', 'POST'])
 def root():
     """Return all strains in pickle dict"""
-    PICKLE2_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "strains_num.pkl")
+    PICKLE2_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "pickle_models", "strains_num.pkl")
     pickle2_dict = pickle.load(open(PICKLE2_FILEPATH, "rb"))
     return jsonify(pickle2_dict)
 
 @strain_routes.route("/<strain>", methods=['GET'])
 def get_strain(strain):
     """ Can query pickled strains dictionary to get information about a particular strain"""
-    PICKLE_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "strains.pkl")
+    PICKLE_FILEPATH = os.path.join(os.path.dirname(__file__),"..", "stats_model", "pickle_models", "strains.pkl")
     pickle_dict = pickle.load(open(PICKLE_FILEPATH, "rb"))
     return jsonify({"strain":pickle_dict[strain]})
 

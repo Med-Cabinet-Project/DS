@@ -13,7 +13,7 @@ Here user can see a json list holding dictioanries of all the different strains 
 
 
 ### ENDPOINTS
-* /<strain>
+* `` /<strain>``
 
 User enters a string query for a strain name and they get a json object, similar to the one below: 
 https://med-cabinet-project.herokuapp.com/Afpak
@@ -28,15 +28,15 @@ rating: 	 4.2
 type: 	     "hybrid"
 ```
 
-* /data
+* ``/data``
 User can view a static html table of all the different strains stored in the Postgres Database.
 
-* /types/<race>
+*`` /types/<race>``
 Users can enter the specific type/family of weed they are interested in, i.e. hybrid, indica, sativa This query return a randomized list of five strains that are in this category.
 https://med-cabinet-project.herokuapp.com/types/indica
 
 
-* /medical/<medical>
+* ``/medical/<medical>``
 Users can enter specific medical conditions/symptoms and they will receive 5 different strains said to 
 treat or help with the condition. 
 
@@ -67,7 +67,7 @@ positive  "Euphoric,Happy,Creative,Energetic,Uplifted"
 type:     "hybrid"
 ```
 
-* /positive/<positive>
+* ``/positive/<positive>``
 Users can enter specific positive effects they wish to experiences and they will receive 5 different 
 strains that allow the user to experience said feeling. 
 
@@ -97,7 +97,7 @@ positive: "Relaxed,Happy,Energetic,Talkative,Uplifted"
 type:  	  "sativa"
 ```
 
-* /flavors/<flavors>
+* ``/flavors/<flavors>``
 Users can query the database for specific flavors that they enjoy and will receive 5 different strains 
 that come in that flavor. 
 https://med-cabinet-project.herokuapp.com/flavors/earthy
@@ -112,7 +112,7 @@ positive: "Relaxed,Euphoric,Happy,Energetic,Uplifted"
 type:	
 ```
 
-* /query/<medical>/<medical>/<positive>
+* ``/query/<medical>/<medical>/<positive>``
 
 Users are looking for more specific strains are able to query the database based on two medical symptoms 
 and one positive effect they are looking to achieve. This query will return up to 5 strains if there are 

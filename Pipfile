@@ -8,13 +8,14 @@ verify_ssl = true
 [packages]
 requests = "*"
 pandas = "*"
-flask-migrate = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
 Flask = "*"
 Flask-SQLAlchemy = "*"
 Flask-Cors = "*"
+spacy = "*"
+Flask-Migrate = "*"
 
 [requires]
 python_version = "3.7"

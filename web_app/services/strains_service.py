@@ -15,4 +15,3 @@ API =  f"http://strainapi.evanbusse.com/{API_KEY}//strains/search/all"
 
 if __name__ == "__main__":
    pass
-    

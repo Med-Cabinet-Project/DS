@@ -9,7 +9,7 @@ import json
 import pandas as pd
 import pickle
 
-from web_app.services.strains_service import API  
+from web_app.services.strains_service import API
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -35,10 +35,10 @@ class Strain(DB.Model):
 
 def extract_data(api=API):
     """
-    Parses the json object readable dictionary 
+    Parses the json object readable dictionary
 
     Param: api (connects to Strain API to get information about weed strains and effects)
-    Returns: json data 
+    Returns: json data
     Example:
     'Afpak': {'effects': {'medical': ['Depression',
                                    'Insomnia',
@@ -94,7 +94,7 @@ def parse_records(database_records):
         parsed_record = record.__dict__
         del parsed_record["_sa_instance_state"]
         parsed_records.append(parsed_record)
-        
+
     return (parsed_records)
 
 

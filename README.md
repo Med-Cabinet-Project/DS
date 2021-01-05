@@ -135,21 +135,22 @@ type:	  "sativa"
 
 Below are links to resources used to create this project:
 
-* Datasets (https://github.com/Med-Cabinet-Project/DS/tree/master/web_app/stats_model/csv) 
+* Datasets: (https://github.com/Med-Cabinet-Project/DS/tree/master/web_app/stats_model/csv) 
 cannabis.csv is a merged dataframe of both the strains.csv (csv created from the [Strains's API](http://strains.evanbusse.com/)) and the csv from [Kaggle](https://www.kaggle.com/kingburrito666/cannabis-strains). 
 
-* Pickled models https://github.com/Med-Cabinet-Project/DS/tree/master/web_app/stats_model/pickle_models
+* Pickled models: https://github.com/Med-Cabinet-Project/DS/tree/master/web_app/stats_model/pickle_models
 These are the pickled dictionaries used for the home route and the strains route
 
-* API https://github.com/Med-Cabinet-Project/DS/tree/master/web_app
+* API: https://github.com/Med-Cabinet-Project/DS/tree/master/web_app
 This is where the code for creating the different endpoints can be located. 
 
-* Packages/Technologies used
+* Packages/Technologies used:
 https://github.com/Med-Cabinet-Project/DS/blob/master/requirements.txt
 
 
 ## Testing
-used curl to test that endpoints were able to retrieve correct information 
+Used curl to test that endpoints were able to retrieve correct information.
+
 Example: ``curl med-cabinet-project.herokuapp.com/query/pain/depression/happy``
 
 ```

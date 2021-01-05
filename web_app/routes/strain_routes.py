@@ -7,7 +7,7 @@ import json
 from sqlalchemy.sql.expression import func
 from sqlalchemy import or_
 from web_app.models import DB, Strain, extract_data, create_table, parse_records
-from web_app.services.strains_service import API 
+from web_app.services.strains_service import API
 
 strain_routes = Blueprint("strain_routes", __name__)
 
@@ -57,7 +57,7 @@ def data():
     records = parse_records(strain)
     return render_template("data.html", records=records, message="Home Page")
 
-#More query routes 
+#More query routes
 @strain_routes.route('/types/<race>', methods=['GET'])
 def get_type(race):
     """User can query Strains DB based on type/race preference - sativa, indica, hybrid"""
@@ -68,10 +68,10 @@ def get_type(race):
 
     for typ in records:
         types.append({
-            "id":typ.id, 
+            "id":typ.id,
             "name": typ.name,
             "type": typ.race,
-            "medical":typ.medical, 
+            "medical":typ.medical,
             "positive": typ.positive,
             "flavor": typ.flavors,
             "negative": typ.negative
@@ -83,18 +83,18 @@ def get_medical(medical):
 
     """User can query Strains DB based on medical symptoms/ailmens - depression, nausea, etc."""
 
-    records = Strain.query.filter(Strain.medical.ilike(f"%{medical}%", escape="/")).order_by(func.random()).limit(5).all()  
-   
+    records = Strain.query.filter(Strain.medical.ilike(f"%{medical}%", escape="/")).order_by(func.random()).limit(5).all()
+
     medicals = []
 
     for med in records:
         medicals.append({
-            "id":med.id, 
+            "id":med.id,
             "name": med.name,
             "type": med.race,
-            "medical":med.medical, 
+            "medical":med.medical,
             "positive": med.positive,
-            "flavor": med.flavors, 
+            "flavor": med.flavors,
             "negative": med.negative
         })
     return jsonify(medicals)
@@ -105,17 +105,17 @@ def get_positve(positive):
     """User can query Strains DB based on positive effects they want to experience -euphoria, focus,  etc."""
 
     records = Strain.query.filter(Strain.positive.ilike(f"%{positive}%", escape="/")).order_by(func.random()).limit(5).all()
-    
+
     positives = []
 
     for pos in records:
         positives.append({
-            "id":pos.id, 
+            "id":pos.id,
             "name": pos.name,
             "type": pos.race,
-            "medical":pos.medical, 
+            "medical":pos.medical,
             "positive": pos.positive,
-            "flavor": pos.flavors, 
+            "flavor": pos.flavors,
             "negative": pos.negative
         })
     return jsonify(positives)
@@ -125,17 +125,17 @@ def get_flavors(flavors):
     """User can query Strains DB based on flavor preferences."""
 
     records = Strain.query.filter(Strain.flavors.ilike(f"%{flavors}%", escape="/")).order_by(func.random()).limit(5).all()
-    
+
     tastes = []
 
     for tas in records:
         tastes.append({
-            "id":tas.id, 
+            "id":tas.id,
             "name": tas.name,
             "type": tas.race,
-            "medical":tas.medical, 
+            "medical":tas.medical,
             "positive": tas.positive,
-            "flavor": tas.flavors, 
+            "flavor": tas.flavors,
             "negative": tas.negative
         })
     return jsonify(tastes)
@@ -147,17 +147,17 @@ def get_match(medical, medical1, positive): #,  medical1, positive1):
     records = Strain.query.filter(or_(Strain.medical.ilike(f"%{medical}%", escape="/")),
                                      (Strain.medical.ilike(f"%{medical1}%", escape="/")),
                                      (Strain.positive.ilike(f"%{positive}%", escape="/"))).order_by(func.random()).limit(5).all()
-    
+
     matches = []
 
     for match in records:
         matches.append({
-            "id":match.id, 
+            "id":match.id,
             "name": match.name,
             "type": match.race,
-            "medical":match.medical, 
+            "medical":match.medical,
             "positive": match.positive,
-            "flavor": match.flavors, 
+            "flavor": match.flavors,
             "negative": match.negative
         })
     return jsonify(matches)
